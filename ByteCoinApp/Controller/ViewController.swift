@@ -8,7 +8,7 @@
 import UIKit
 
 // UIPickerViewDataSource protocol ensure that now ViewController class is capable of providing any data to UIPickerViews
-class ViewController: UIViewController, UIPickerViewDataSource {
+class ViewController: UIViewController{
     
     var coinManager = CoinManager()
     
@@ -27,7 +27,7 @@ class ViewController: UIViewController, UIPickerViewDataSource {
 }
 
 //MARK: - UIPickerViewDelegate
-extension ViewController: UIPickerViewDelegate{
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     // provide info wrt number of columns needed in picker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -59,7 +59,7 @@ extension ViewController: CoinManagerDelegate{
     func didUpdateCoin(_ coinManager: CoinManager, coin: CoinModel){
         DispatchQueue.main.async {
             self.bitCoinLabel.text = coin.currencyRateString
-            self.currencyLabel.text = coin.asset_id_quote
+            self.currencyLabel.text = coin.currency
         }
         
     }

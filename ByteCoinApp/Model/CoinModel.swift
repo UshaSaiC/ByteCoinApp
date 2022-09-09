@@ -10,7 +10,7 @@ import Foundation
 // it basically helps to get the formatted output
 struct CoinModel{
     let rate: Double
-    let asset_id_quote: String
+    let currency: String
     
     var currencyRateString: String{
         String(format: "%.2f", rate)

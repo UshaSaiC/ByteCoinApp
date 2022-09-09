@@ -22,8 +22,7 @@ struct CoinManager{
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
     func getCoinPrice(for currency: String){
-        var urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
-        urlString  = urlString.replacingOccurrences(of: "\\", with: "/")
+        let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
         performRequest(with: urlString)
     }
     
@@ -54,8 +53,7 @@ struct CoinManager{
             let decodedData = try decoder.decode(CoinData.self, from: data)
             let currencyRate = decodedData.rate
             let currency = decodedData.asset_id_quote
-            let coin = CoinModel(rate: currencyRate, asset_id_quote: currency)
-            print(coin.currencyRateString)
+            let coin = CoinModel(rate: currencyRate, currency: currency)
             return coin
         } catch{
             delegate?.didFailWithError(error: error)
